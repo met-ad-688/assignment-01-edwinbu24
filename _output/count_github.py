@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the CSV files
-files = ["data/question_tags.csv", "data/questions.csv"]  # Replace with actual file names
+files = ["../question_tags.csv", "../questions.csv"]  # Replace with actual file names
 count = 0
 
 for file in files:
@@ -11,6 +11,7 @@ for file in files:
 
         # Count occurrences of "GitHub" (case-insensitive) in any column
         count += df.apply(lambda row: row.astype(str).str.contains("GitHub", case=False, na=False).any(), axis=1).sum()
+        print(f"File: {file}, Lines containing 'GitHub': {count}")
 
     except FileNotFoundError:
         print(f"Warning: {file} not found.")
@@ -20,7 +21,7 @@ for file in files:
 # Print the total count
 print(f"Total lines containing 'GitHub': {count}")
 
-# Save the result to a text file
-with open("_output/github_count.txt", "w") as f:
-    f.write(f"Total lines containing 'GitHub': {count}\n")
+# # Save the result to a text file
+# with open("_output/github_count.txt", "w") as f:
+#     f.write(f"Total lines containing 'GitHub': {count}\n")
 
